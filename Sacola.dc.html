@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Sacola — Brüder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script src="assets/dc-lite.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
+.navlinks a{font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+input,select,button{font-family:Inter,system-ui,sans-serif}
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; color: #111111; background: #FFFFFF; width: 100%">
+  <div style="background: #111111; color: #FFFFFF; font-size: 13px; padding: 10px 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; letter-spacing: .02em">
+    <span>Frete e taxas de importação por nossa conta</span>
+    <img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 11px; width: auto; align-self: center">
+    <span>10% OFF no Pix</span>
+    <img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 11px; width: auto; align-self: center">
+    <span>Até 5x sem juros</span>
+  </div>
+  <header style="border-bottom: 1px solid #E4E2DE; background: #FFFFFF">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
+      <a href="Main.dc.html" aria-label="Brüder, página inicial" style="display: flex; align-items: center; height: 48px"><img src="assets/bruder-logo-preto.png" alt="Brüder" style="height: 38px; width: auto; display: block"></a>
+      <nav class="navlinks" aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 8px 28px">
+        <a href="Categoria.dc.html">Feminino</a>
+        <a href="Categoria.dc.html">Masculino</a>
+        <a href="Categoria.dc.html">Calçados</a>
+        <a href="Categoria.dc.html">Bolsas</a>
+        <a href="Categoria.dc.html">Pronta entrega</a>
+        <a href="Categoria.dc.html" style="color: #7A1F2B">Ofertas</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 4px">
+        <a href="Busca.dc.html" aria-label="Buscar" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+        <a href="Conta.dc.html" aria-label="Minha conta" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+        <a href="Sacola.dc.html" aria-label="Sacola, 2 itens" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><span style="position: absolute; top: 6px; right: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #7A1F2B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">2</span></a>
+      </div>
+    </div>
+  </header>
+  <div style="max-width: 1280px; margin: 0 auto; padding: 40px 32px 96px">
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px">
+      <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #7A1F2B"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Sacola</span>
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 44px; letter-spacing: -.02em">Sua sacola <span style="font-size: 20px; font-weight: 500; color: #5C5C5C; letter-spacing: 0">({{qtdTotal}} itens)</span></h1>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+      <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+        <sc-if value="{{vazia}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 72px 24px; background: #F7F6F4; text-align: center">
+            <img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 72px; width: auto; opacity: .25">
+            <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.01em">Sua sacola está vazia</h2>
+            <a href="Categoria.dc.html" style="display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 32px; background: #111111; color: #FFFFFF; border: 0; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer">Ver pronta entrega</a>
+          </div>
+        </sc-if>
+        <sc-for list="{{itens}}" as="it" hint-placeholder-count="2">
+          <div style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E4E2DE">
+            <a href="Produto.dc.html" style="flex: 0 0 140px; height: 140px; background: #F3F2F0; display: flex; align-items: center; justify-content: center">
+              <sc-if value="{{it.isShoe}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="110" height="62" viewBox="0 0 160 90" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path></svg></sc-if>
+              <sc-if value="{{it.isBag}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="80" height="74" viewBox="0 0 120 110" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M18 42h84l-8 60H26z"></path><path d="M40 42V32a20 20 0 0 1 40 0v10"></path></svg></sc-if>
+            </a>
+            <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 6px; min-width: 0">
+              <div style="display: flex; justify-content: space-between; gap: 16px">
+                <a href="Produto.dc.html" style="font-size: 17px; font-weight: 600">{{it.nome}}</a>
+                <strong style="font-size: 17px; white-space: nowrap">{{it.totalFmt}}</strong>
+              </div>
+              <span style="font-size: 14px; color: #5C5C5C">{{it.det}}</span>
+              <span style="align-self: flex-start; margin-top: 4px; background: #E8F1EC; color: #1A5C3B; font-size: 12px; font-weight: 600; padding: 4px 8px">{{it.status}}</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px">
+                <div role="group" aria-label="Quantidade" style="display: flex; align-items: center; border: 1.5px solid #D4D1CC">
+                  <button type="button" onClick="{{it.menos}}" aria-label="Diminuir quantidade" style="width: 44px; height: 44px; border: 0; background: #FFFFFF; font-size: 18px; cursor: pointer">−</button>
+                  <span style="min-width: 32px; text-align: center; font-size: 15px; font-weight: 600">{{it.qty}}</span>
+                  <button type="button" onClick="{{it.mais}}" aria-label="Aumentar quantidade" style="width: 44px; height: 44px; border: 0; background: #FFFFFF; font-size: 18px; cursor: pointer">+</button>
+                </div>
+                <button type="button" onClick="{{it.remover}}" style="height: 44px; border: 0; background: transparent; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; color: #3D3A36">Remover</button>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+        <a href="Categoria.dc.html" style="margin-top: 24px; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px">← Continuar comprando</a>
+      </div>
+
+      <aside aria-label="Resumo do pedido" style="flex: 1 1 340px; max-width: 420px; display: flex; flex-direction: column; gap: 20px; padding: 32px; background: #F7F6F4">
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.01em">Resumo</h2>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Calcular frete
+          <span style="display: flex; gap: 8px"><input type="text" placeholder="00000-000" style="height: 50px; padding: 0 16px; border: 1.5px solid #D4D1CC; background: #FFFFFF; font-size: 15px; color: #111111; box-sizing: border-box; width: 100%; flex: 1 1 auto"><button type="button" style="display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 32px; background: #FFFFFF; color: #111111; border: 1.5px solid #111111; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; height: 50px; padding: 0 18px">OK</button></span>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Cupom de desconto
+          <span style="display: flex; gap: 8px"><input type="text" placeholder="Digite o cupom" style="height: 50px; padding: 0 16px; border: 1.5px solid #D4D1CC; background: #FFFFFF; font-size: 15px; color: #111111; box-sizing: border-box; width: 100%; flex: 1 1 auto"><button type="button" style="display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 32px; background: #FFFFFF; color: #111111; border: 1.5px solid #111111; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; height: 50px; padding: 0 18px">Aplicar</button></span>
+        </label>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid #D4D1CC; font-size: 15px">
+          <div style="display: flex; justify-content: space-between"><span>Subtotal</span><span>{{subtotal}}</span></div>
+          <div style="display: flex; justify-content: space-between"><span>Frete (SEDEX)</span><span style="color: #1A5C3B; font-weight: 600">Grátis</span></div>
+          <div style="display: flex; justify-content: space-between"><span>Taxas de importação</span><span style="color: #1A5C3B; font-weight: 600">Inclusas</span></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 20px; border-top: 1px solid #D4D1CC">
+          <div style="display: flex; justify-content: space-between; align-items: baseline"><strong style="font-size: 17px">Total</strong><strong style="font-family: Archivo, sans-serif; font-size: 28px">{{subtotal}}</strong></div>
+          <span style="font-size: 14px; color: #1A5C3B; font-weight: 600; text-align: right">{{pix}} no Pix (10% OFF)</span>
+          <span style="font-size: 13px; color: #3D3A36; text-align: right">ou 5x de {{parcela}} sem juros</span>
+        </div>
+        <a href="Checkout.dc.html" style="display: inline-flex; align-items: center; justify-content: center; height: 54px; padding: 0 32px; background: #111111; color: #FFFFFF; border: 0; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer">Finalizar compra</a>
+        <span style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: #5C5C5C"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5C5C5C" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Compra segura</span>
+      </aside>
+    </div>
+  </div>
+  <footer style="background: #111111; color: #B5B0A8">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; font-size: 13px">
+      <img src="assets/bruder-logo-branco.png" alt="Brüder" style="height: 32px; width: auto">
+      <span>© 2026 Brüder · Pix · Visa · Mastercard · Elo · Amex</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { itens: [
+      { id: 1, nome: 'Tênis em couro branco', det: 'Calçados masculinos · Tam. 42', preco: 1297, qty: 1, isShoe: true, status: 'Pronta entrega · envio em 24h' },
+      { id: 2, nome: 'Bolsa transversal em couro', det: 'Bolsas masculinas · Preta', preco: 1197, qty: 1, isShoe: false, status: 'Pronta entrega · envio em 24h' }
+    ] };
+  }
+  renderVals() {
+    const fmt = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const set = (id, fn) => this.setState({ itens: this.state.itens.map((x) => x.id === id ? fn(x) : x).filter((x) => x.qty > 0) });
+    const itens = this.state.itens.map((x) => ({
+      ...x, isBag: !x.isShoe, totalFmt: fmt(x.preco * x.qty),
+      mais: () => set(x.id, (y) => ({ ...y, qty: y.qty + 1 })),
+      menos: () => set(x.id, (y) => ({ ...y, qty: Math.max(1, y.qty - 1) })),
+      remover: () => set(x.id, (y) => ({ ...y, qty: 0 }))
+    }));
+    const sub = this.state.itens.reduce((a, x) => a + x.preco * x.qty, 0);
+    return {
+      itens, vazia: itens.length === 0,
+      qtdTotal: this.state.itens.reduce((a, x) => a + x.qty, 0),
+      subtotal: fmt(sub), pix: fmt(sub * 0.9), parcela: fmt(sub / 5)
+    };
+  }
+}
+</script>
+</body>
+</html>

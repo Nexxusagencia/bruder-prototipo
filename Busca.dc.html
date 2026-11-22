@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Busca — Brüder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script src="assets/dc-lite.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
+.navlinks a{font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+input,select,button{font-family:Inter,system-ui,sans-serif}
+</style>
+</helmet>
+<div style="font-family: Inter, system-ui, sans-serif; color: #111111; background: #FFFFFF; width: 100%">
+  <div style="background: #111111; color: #FFFFFF; font-size: 13px; padding: 10px 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; letter-spacing: .02em">
+    <span>Frete e taxas de importação por nossa conta</span>
+    <img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 11px; width: auto; align-self: center">
+    <span>10% OFF no Pix</span>
+    <img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 11px; width: auto; align-self: center">
+    <span>Até 5x sem juros</span>
+  </div>
+  <header style="border-bottom: 1px solid #E4E2DE; background: #FFFFFF">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
+      <a href="Main.dc.html" aria-label="Brüder, página inicial" style="display: flex; align-items: center; height: 48px"><img src="assets/bruder-logo-preto.png" alt="Brüder" style="height: 38px; width: auto; display: block"></a>
+      <nav class="navlinks" aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 8px 28px">
+        <a href="Categoria.dc.html">Feminino</a>
+        <a href="Categoria.dc.html">Masculino</a>
+        <a href="Categoria.dc.html">Calçados</a>
+        <a href="Categoria.dc.html">Bolsas</a>
+        <a href="Categoria.dc.html">Pronta entrega</a>
+        <a href="Categoria.dc.html" style="color: #7A1F2B">Ofertas</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 4px">
+        <a href="Busca.dc.html" aria-label="Buscar" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+        <a href="Conta.dc.html" aria-label="Minha conta" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+        <a href="Sacola.dc.html" aria-label="Sacola, 0 itens" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg></a>
+      </div>
+    </div>
+  </header>
+  <div style="background: #F7F6F4; border-bottom: 1px solid #E4E2DE">
+    <div style="max-width: 960px; margin: 0 auto; padding: 48px 32px; display: flex; flex-direction: column; gap: 20px">
+      <label for="q" style="font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase">O que você procura?</label>
+      <div style="display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 20px; background: #FFFFFF; border: 2px solid #111111">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+        <input id="q" type="search" value="{{q}}" onChange="{{onQ}}" placeholder="Tênis, mocassim, bolsa transversal..." style="flex: 1 1 auto; height: 56px; border: 0; outline: none; font-size: 20px; background: transparent">
+        <button type="button" onClick="{{limpar}}" style="height: 44px; padding: 0 12px; border: 0; background: transparent; font-size: 14px; text-decoration: underline; cursor: pointer">Limpar</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+        <span style="font-size: 13px; color: #5C5C5C; margin-right: 4px">Mais buscados:</span>
+        <sc-for list="{{sugestoes}}" as="s" hint-placeholder-count="6">
+          <button type="button" onClick="{{s.pick}}" style="height: 38px; padding: 0 16px; border: 1px solid #D4D1CC; border-radius: 999px; background: #FFFFFF; font-size: 14px; cursor: pointer">{{s.t}}</button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1280px; margin: 0 auto; padding: 48px 32px 96px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+    <aside aria-label="Categorias" style="flex: 1 1 220px; max-width: 260px; display: flex; flex-direction: column; gap: 14px">
+      <strong style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase">Categorias</strong>
+      <a href="Categoria.dc.html" style="font-size: 15px">Calçados femininos</a>
+      <a href="Categoria.dc.html" style="font-size: 15px">Calçados masculinos</a>
+      <a href="Categoria.dc.html" style="font-size: 15px">Bolsas femininas</a>
+      <a href="Categoria.dc.html" style="font-size: 15px">Bolsas masculinas</a>
+    </aside>
+    <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.01em; font-size: 28px">{{titulo}}</h1>
+      <sc-if value="{{nada}}" hint-placeholder-val="{{false}}">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 64px 24px; background: #F7F6F4; text-align: center">
+          <img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 64px; width: auto; opacity: .25">
+          <strong style="font-size: 18px">Nenhum produto encontrado</strong>
+          <span style="font-size: 14px; color: #5C5C5C">Tente outro termo ou fale com a gente no WhatsApp.</span>
+        </div>
+      </sc-if>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px 20px">
+        <sc-for list="{{res}}" as="p" hint-placeholder-count="6">
+          <a href="Produto.dc.html" style="display: flex; flex-direction: column; gap: 10px">
+            <div style="aspect-ratio: 1 / 1; background: #F3F2F0; display: flex; align-items: center; justify-content: center">
+              <sc-if value="{{p.isShoe}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="130" height="74" viewBox="0 0 160 90" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path></svg></sc-if>
+              <sc-if value="{{p.isBag}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="96" height="88" viewBox="0 0 120 110" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M18 42h84l-8 60H26z"></path><path d="M40 42V32a20 20 0 0 1 40 0v10"></path></svg></sc-if>
+            </div>
+            <span style="font-size: 12px; color: #5C5C5C; letter-spacing: .06em; text-transform: uppercase">{{p.cat}}</span>
+            <span style="font-size: 15px; font-weight: 600; margin-top: -4px">{{p.nome}}</span>
+            <span style="font-size: 16px; font-weight: 700">{{p.por}}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  <footer style="background: #111111; color: #B5B0A8">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; font-size: 13px">
+      <img src="assets/bruder-logo-branco.png" alt="Brüder" style="height: 32px; width: auto">
+      <span>© 2026 Brüder · Pix · Visa · Mastercard · Elo · Amex</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { q: 'tênis' }; }
+  renderVals() {
+    const todos = [
+      ['Tênis em couro branco', 'Calçados masculinos', 1], ['Tênis plataforma', 'Calçados femininos', 0],
+      ['Tênis runner', 'Calçados masculinos', 0], ['Tênis knit', 'Calçados femininos', 1],
+      ['Tênis cano alto', 'Calçados masculinos', 1], ['Tênis retrô', 'Calçados femininos', 0],
+      ['Mocassim em camurça', 'Calçados masculinos', 1], ['Sapatilha bico fino', 'Calçados femininos', 0],
+      ['Sandália de tiras', 'Calçados femininos', 1], ['Sapato derby', 'Calçados masculinos', 0],
+      ['Bolsa de ombro matelassê', 'Bolsas femininas', 1], ['Bolsa transversal em couro', 'Bolsas masculinas', 0],
+      ['Tote em couro', 'Bolsas femininas', 1], ['Pasta executiva', 'Bolsas masculinas', 1],
+      ['Clutch estruturada', 'Bolsas femininas', 0], ['Pochete', 'Bolsas masculinas', 0]
+    ].map(([nome, cat, alto]) => ({ nome, cat, por: alto ? 'R$ 1.297,00' : 'R$ 1.197,00', isBag: cat.startsWith('Bolsas'), isShoe: !cat.startsWith('Bolsas') }));
+    const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const q = this.state.q || '';
+    const res = q.trim() ? todos.filter((p) => norm(p.nome + ' ' + p.cat).includes(norm(q.trim()))) : todos;
+    return {
+      q, res, nada: res.length === 0,
+      titulo: q.trim() ? res.length + ' resultados para \u201c' + q.trim() + '\u201d' : 'Todos os produtos',
+      onQ: (e) => this.setState({ q: e.target.value }),
+      limpar: () => this.setState({ q: '' }),
+      sugestoes: ['tênis', 'mocassim', 'sandália', 'bolsa', 'transversal', 'tote'].map((t) => ({ t, pick: () => this.setState({ q: t }) }))
+    };
+  }
+}
+</script>
+</body>
+</html>
