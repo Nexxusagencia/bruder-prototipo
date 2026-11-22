@@ -42,6 +42,7 @@
       if (lookup((node.getAttribute('value') || '').replace(/[{}]/g, ''), scope)) node.childNodes.forEach(function (c) { build(c, scope, out); });
       return;
     }
+    var pendingValue = null;
     var isSvg = node.namespaceURI === 'http://www.w3.org/2000/svg';
     var el = isSvg ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
     Array.prototype.forEach.call(node.attributes, function (a) {
@@ -59,7 +60,7 @@
       if (m) {
         var v = lookup(m[1], scope);
         if (BOOL[name]) { if (v === true || v === 'true') el.setAttribute(name, ''); if (name === 'checked') el.checked = !!v; return; }
-        if (name === 'value') { el.setAttribute('value', v == null ? '' : v); el.value = v == null ? '' : v; return; }
+        if (name === 'value') { el.setAttribute('value', v == null ? '' : v); el.value = v == null ? '' : v; pendingValue = v; return; }
         if (v == null || v === false) return;
         el.setAttribute(name, String(v));
       } else {
@@ -68,6 +69,7 @@
       }
     });
     node.childNodes.forEach(function (c) { build(c, scope, el); });
+    if (pendingValue != null && tag === 'select') el.value = pendingValue;
     out.appendChild(el);
   }
 
