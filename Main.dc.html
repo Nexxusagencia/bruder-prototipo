@@ -58,17 +58,17 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
   <!-- Hero dividido Feminino / Masculino -->
   <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0">
     <a href="Categoria.dc.html?g=fem" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 620px; padding: 56px; background: #E9E6E1; overflow: hidden">
-      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #8A8580; font-size: 13px; letter-spacing: .1em; text-transform: uppercase">[ Foto campanha feminina ]</div>
+      <img src="assets/campanha-feminina.jpg" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,17,17,0) 35%, rgba(17,17,17,.75) 100%)"></div>
       <div style="position: relative; display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
-        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #3D3A36"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Feminino</span>
-        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 64px; line-height: .95; letter-spacing: -.02em; color: #111111">Feito pra quem<br>entende.</h1>
-        <span style="margin-top: 8px; display: inline-flex; align-items: center; height: 48px; padding: 0 28px; background: #111111; color: #FFFFFF; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Comprar feminino</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #FFFFFF"><img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Feminino</span>
+        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 64px; line-height: .95; letter-spacing: -.02em; color: #FFFFFF">Feito pra quem<br>entende.</h1>
+        <span style="margin-top: 8px; display: inline-flex; align-items: center; height: 48px; padding: 0 28px; background: #FFFFFF; color: #111111; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Comprar feminino</span>
       </div>
     </a>
     <a href="Categoria.dc.html?g=masc" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 620px; padding: 56px; background: #2A2826; overflow: hidden">
-      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #9C978F; font-size: 13px; letter-spacing: .1em; text-transform: uppercase">[ Foto campanha masculina ]</div>
+      <img src="assets/campanha-masculina.jpg" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,17,17,0) 35%, rgba(17,17,17,.75) 100%)"></div>
       <div style="position: relative; display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
-        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #D6D2CC"><img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Masculino</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #FFFFFF"><img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Masculino</span>
         <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 64px; line-height: .95; letter-spacing: -.02em; color: #FFFFFF">Os pares que<br>faltavam.</h2>
         <span style="margin-top: 8px; display: inline-flex; align-items: center; height: 48px; padding: 0 28px; background: #FFFFFF; color: #111111; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Comprar masculino</span>
       </div>
@@ -85,12 +85,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
       <sc-for list="{{categorias}}" as="c" hint-placeholder-count="4">
         <a href="{{c.href}}" class="card" style="display: flex; flex-direction: column; gap: 14px">
           <div class="card-img" style="aspect-ratio: 3 / 4; background: #F3F2F0; display: flex; align-items: center; justify-content: center; transition: background .2s">
-            <sc-if value="{{c.isShoe}}" hint-placeholder-val="{{true}}">
-              <svg aria-hidden="true" width="150" height="90" viewBox="0 0 160 90" fill="none" stroke="#9C978F" stroke-width="2" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path><path d="M60 36l6 8M70 32l6 8M80 30l5 9"></path></svg>
-            </sc-if>
-            <sc-if value="{{c.isBag}}" hint-placeholder-val="{{false}}">
-              <svg aria-hidden="true" width="120" height="110" viewBox="0 0 120 110" fill="none" stroke="#9C978F" stroke-width="2" stroke-linejoin="round"><path d="M18 42h84l-8 60H26z"></path><path d="M40 42V32a20 20 0 0 1 40 0v10"></path><path d="M18 56h84"></path></svg>
-            </sc-if>
+            <img src="{{c.img}}" alt="{{c.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center">
             <span style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 20px">{{c.nome}}</span>
@@ -126,12 +121,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
             <div class="card-img" style="position: relative; aspect-ratio: 1 / 1; background: #FFFFFF; display: flex; align-items: center; justify-content: center; transition: background .2s">
               <span style="position: absolute; top: 12px; left: 12px; background: #111111; color: #FFFFFF; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 9px">{{p.tag}}</span>
               <span style="position: absolute; top: 12px; right: 12px; display: inline-flex; align-items: center; height: 26px; padding: 0 10px 0 20px; background: #7A1F2B; color: #FFFFFF; font-size: 12px; font-weight: 700; clip-path: polygon(11px 0, 100% 0, 100% 100%, 11px 100%, 0 50%)"><span aria-hidden="true" style="position: absolute; left: 9px; top: 11px; width: 4px; height: 4px; border-radius: 50%; background: #FFFFFF"></span>{{p.off}}</span>
-              <sc-if value="{{p.isShoe}}" hint-placeholder-val="{{true}}">
-                <svg aria-hidden="true" width="170" height="96" viewBox="0 0 160 90" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path></svg>
-              </sc-if>
-              <sc-if value="{{p.isBag}}" hint-placeholder-val="{{false}}">
-                <svg aria-hidden="true" width="130" height="120" viewBox="0 0 120 110" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M18 42h84l-8 60H26z"></path><path d="M40 42V32a20 20 0 0 1 40 0v10"></path></svg>
-              </sc-if>
+              <img src="{{p.img}}" alt="{{p.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
             </div>
             <div style="display: flex; flex-direction: column; gap: 4px">
               <span style="font-size: 12px; color: #5C5C5C; letter-spacing: .06em; text-transform: uppercase">{{p.cat}}</span>
@@ -147,7 +137,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 
   <!-- Editorial bolsas -->
   <section style="max-width: 1280px; margin: 0 auto; padding: 96px 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center">
-    <div style="aspect-ratio: 4 / 5; background: #E9E6E1; display: flex; align-items: center; justify-content: center; color: #8A8580; font-size: 13px; letter-spacing: .1em; text-transform: uppercase">[ Foto editorial bolsas ]</div>
+    <img src="assets/sq-bolsa-rosa.jpg" alt="Bolsa rosa estruturada com alça transversal" style="aspect-ratio: 4 / 5; width: 100%; object-fit: cover; display: block">
     <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start; max-width: 480px">
       <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #7A1F2B"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Bolsas</span>
       <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -.02em">Mais de 500 modelos para ela e para ele.</h2>
@@ -243,21 +233,22 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3600}}'>
 class Component extends DCLogic {
   renderVals() {
+    const IMG = { S: ["assets/sq-tenis-cinza-verde.jpg", "assets/sq-tenis-preto-amarelo.jpg", "assets/sq-tenis-rosa-laranja.jpg", "assets/sq-tenis-branco-1386.jpg", "assets/sq-tenis-branco-verde.jpg"], B: ["assets/sq-bolsa-fosca-preta.jpg", "assets/sq-bolsa-folha-dourada.jpg", "assets/sq-bolsa-rosa.jpg"] };
     const site = typeof window !== 'undefined' && window.__SITE__;
     const L = (q) => 'Categoria.dc.html' + (site ? '?' + q : '');
     return {
       categorias: [
-        { nome: 'Calçados femininos', href: L('g=fem&s=calcados'), isShoe: true, isBag: false },
-        { nome: 'Bolsas femininas', href: L('g=fem&s=bolsas'), isShoe: false, isBag: true },
-        { nome: 'Calçados masculinos', href: L('g=masc&s=calcados'), isShoe: true, isBag: false },
-        { nome: 'Bolsas masculinas', href: L('g=masc&s=bolsas'), isShoe: false, isBag: true }
+        { nome: 'Calçados femininos', img: IMG.S[2], href: L('g=fem&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas femininas', img: IMG.B[2], href: L('g=fem&s=bolsas'), isShoe: false, isBag: true },
+        { nome: 'Calçados masculinos', img: IMG.S[1], href: L('g=masc&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas masculinas', img: IMG.B[0], href: L('g=masc&s=bolsas'), isShoe: false, isBag: true }
       ],
       tipos: [['Tênis','s=calcados&t=Tênis'],['Mocassins','s=calcados&t=Mocassins'],['Sapatos sociais','s=calcados&t=Sapatos%20sociais'],['Sandálias','s=calcados&t=Sandálias'],['Sapatilhas','s=calcados&t=Sapatilhas'],['Bolsa de ombro','s=bolsas&t=Bolsa%20de%20ombro'],['Tote','s=bolsas&t=Tote'],['Transversal','s=bolsas&t=Transversal'],['Clutch','s=bolsas&t=Clutch'],['Pronta entrega','d=pronta']].map(([label, q]) => ({ label, href: L(q) })),
       produtos: [
-        { cat: 'Calçados masculinos', nome: 'Tênis em couro branco', de: 'R$ 1.995,38', off: '-35%', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', parcela: 'R$ 259,40', tag: 'Tam. 44', isShoe: true, isBag: false },
-        { cat: 'Bolsas femininas', nome: 'Bolsa de ombro matelassê', de: 'R$ 1.995,38', off: '-35%', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', parcela: 'R$ 259,40', tag: 'Pronta entrega', isShoe: false, isBag: true },
-        { cat: 'Calçados femininos', nome: 'Tênis plataforma', de: 'R$ 1.596,00', off: '-25%', por: 'R$ 1.197,00', pix: 'R$ 1.077,30', parcela: 'R$ 239,40', tag: 'Tam. 36', isShoe: true, isBag: false },
-        { cat: 'Bolsas masculinas', nome: 'Bolsa transversal em couro', de: 'R$ 1.596,00', off: '-25%', por: 'R$ 1.197,00', pix: 'R$ 1.077,30', parcela: 'R$ 239,40', tag: 'Pronta entrega', isShoe: false, isBag: true }
+        { cat: 'Calçados masculinos', nome: 'Tênis em couro branco', img: IMG.S[4], de: 'R$ 1.995,38', off: '-35%', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', parcela: 'R$ 259,40', tag: 'Tam. 44', isShoe: true, isBag: false },
+        { cat: 'Bolsas femininas', nome: 'Bolsa de ombro matelassê', img: IMG.B[1], de: 'R$ 1.995,38', off: '-35%', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', parcela: 'R$ 259,40', tag: 'Pronta entrega', isShoe: false, isBag: true },
+        { cat: 'Calçados femininos', nome: 'Tênis plataforma', img: IMG.S[0], de: 'R$ 1.596,00', off: '-25%', por: 'R$ 1.197,00', pix: 'R$ 1.077,30', parcela: 'R$ 239,40', tag: 'Tam. 36', isShoe: true, isBag: false },
+        { cat: 'Bolsas masculinas', nome: 'Bolsa transversal em couro', img: IMG.B[0], de: 'R$ 1.596,00', off: '-25%', por: 'R$ 1.197,00', pix: 'R$ 1.077,30', parcela: 'R$ 239,40', tag: 'Pronta entrega', isShoe: false, isBag: true }
       ]
     };
   }

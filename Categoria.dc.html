@@ -128,11 +128,10 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 32px 24px">
           <sc-for list="{{produtos}}" as="p" hint-placeholder-count="9">
             <a href="Produto.dc.html" style="display: flex; flex-direction: column; gap: 12px">
-              <div style="position: relative; aspect-ratio: 4 / 5; background: #F3F2F0; display: flex; align-items: center; justify-content: center">
-                <span style="position: absolute; top: 12px; left: 12px; background: #FFFFFF; color: #111111; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 9px">{{p.tag}}</span>
-                <span style="position: absolute; top: 12px; right: 12px"><span style="position: relative; display: inline-flex; align-items: center; height: 26px; padding: 0 10px 0 20px; background: #7A1F2B; color: #FFFFFF; font-size: 12px; font-weight: 700; clip-path: polygon(11px 0, 100% 0, 100% 100%, 11px 100%, 0 50%)"><span aria-hidden="true" style="position: absolute; left: 9px; top: 11px; width: 4px; height: 4px; border-radius: 50%; background: #FFFFFF"></span>{{p.off}}</span></span>
-                <sc-if value="{{p.isShoe}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="160" height="90" viewBox="0 0 160 90" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path></svg></sc-if>
-                <sc-if value="{{p.isBag}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="120" height="110" viewBox="0 0 120 110" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M18 42h84l-8 60H26z"></path><path d="M40 42V32a20 20 0 0 1 40 0v10"></path></svg></sc-if>
+              <div style="position: relative; aspect-ratio: 4 / 5; background: #F3F2F0; display: flex; align-items: center; justify-content: center; overflow: hidden">
+                <span style="position: absolute; z-index: 1; top: 12px; left: 12px; background: #FFFFFF; color: #111111; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 9px">{{p.tag}}</span>
+                <span style="position: absolute; z-index: 1; top: 12px; right: 12px"><span style="position: relative; display: inline-flex; align-items: center; height: 26px; padding: 0 10px 0 20px; background: #7A1F2B; color: #FFFFFF; font-size: 12px; font-weight: 700; clip-path: polygon(11px 0, 100% 0, 100% 100%, 11px 100%, 0 50%)"><span aria-hidden="true" style="position: absolute; left: 9px; top: 11px; width: 4px; height: 4px; border-radius: 50%; background: #FFFFFF"></span>{{p.off}}</span></span>
+                <img src="{{p.img}}" alt="{{p.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
               </div>
               <div style="display: flex; flex-direction: column; gap: 4px">
                 <span style="font-size: 12px; color: #5C5C5C; letter-spacing: .06em; text-transform: uppercase">{{p.cat}}</span>
@@ -194,9 +193,9 @@ class Component extends DCLogic {
     ];
     const out = []; let i = 0;
     C.forEach(([g, s, tipo, nomes]) => nomes.forEach((nome) => {
-      const alto = i % 2 === 0; const pronta = i % 3 !== 2; i++;
-      out.push({ nome, g, s, tipo, preco: alto ? 1297 : 1197, alto, pronta,
-        cat: (s === 'calcados' ? 'Calçados ' : 'Bolsas ') + (g === 'fem' ? (s === 'calcados' ? 'femininos' : 'femininas') : (s === 'calcados' ? 'masculinos' : 'masculinas')) });
+      const alto = i % 2 === 0; const pronta = i % 3 !== 2;
+      out.push({ idx: i, nome, g, s, tipo, preco: alto ? 1297 : 1197, alto, pronta,
+        _: i++, cat: (s === 'calcados' ? 'Calçados ' : 'Bolsas ') + (g === 'fem' ? (s === 'calcados' ? 'femininos' : 'femininas') : (s === 'calcados' ? 'masculinos' : 'masculinas')) });
     }));
     return out;
   }
@@ -211,7 +210,8 @@ class Component extends DCLogic {
     if (s.ordem === 'menor') lista = lista.slice().sort((a, b) => a.preco - b.preco);
     if (s.ordem === 'maior') lista = lista.slice().sort((a, b) => b.preco - a.preco);
     const fmt = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const produtos = lista.map((p) => ({ nome: p.nome, cat: p.cat, isShoe: p.s === 'calcados', isBag: p.s === 'bolsas',
+    const IMG = { S: ["assets/sq-tenis-cinza-verde.jpg", "assets/sq-tenis-preto-amarelo.jpg", "assets/sq-tenis-rosa-laranja.jpg", "assets/sq-tenis-branco-1386.jpg", "assets/sq-tenis-branco-verde.jpg"], B: ["assets/sq-bolsa-fosca-preta.jpg", "assets/sq-bolsa-folha-dourada.jpg", "assets/sq-bolsa-rosa.jpg"] };
+    const produtos = lista.map((p) => ({ img: p.s === 'calcados' ? IMG.S[p.idx % 5] : IMG.B[p.idx % 3], nome: p.nome, cat: p.cat, isShoe: p.s === 'calcados', isBag: p.s === 'bolsas',
       de: p.alto ? 'R$ 1.995,38' : 'R$ 1.596,00', por: fmt(p.preco), pix: fmt(p.preco * 0.9), off: p.alto ? '-35%' : '-25%',
       tag: p.pronta ? 'Pronta entrega' : 'Sob encomenda' }));
     const btn = (on) => 'height: 44px; padding: 0 18px; border: 0; background: ' + (on ? '#111111; color: #FFFFFF' : '#FFFFFF; color: #111111') + '; font-size: 14px; font-weight: 600; cursor: pointer';

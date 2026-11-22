@@ -87,8 +87,7 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
         <sc-for list="{{res}}" as="p" hint-placeholder-count="6">
           <a href="Produto.dc.html" style="display: flex; flex-direction: column; gap: 10px">
             <div style="aspect-ratio: 1 / 1; background: #F3F2F0; display: flex; align-items: center; justify-content: center">
-              <sc-if value="{{p.isShoe}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="130" height="74" viewBox="0 0 160 90" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path></svg></sc-if>
-              <sc-if value="{{p.isBag}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="96" height="88" viewBox="0 0 120 110" fill="none" stroke="#B5B0A8" stroke-width="2" stroke-linejoin="round"><path d="M18 42h84l-8 60H26z"></path><path d="M40 42V32a20 20 0 0 1 40 0v10"></path></svg></sc-if>
+              <img src="{{p.img}}" alt="{{p.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
             </div>
             <span style="font-size: 12px; color: #5C5C5C; letter-spacing: .06em; text-transform: uppercase">{{p.cat}}</span>
             <span style="font-size: 15px; font-weight: 600; margin-top: -4px">{{p.nome}}</span>
@@ -110,6 +109,7 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
 class Component extends DCLogic {
   constructor(props) { super(props); this.state = { q: 'tênis' }; }
   renderVals() {
+    const IMG = { S: ["assets/sq-tenis-cinza-verde.jpg", "assets/sq-tenis-preto-amarelo.jpg", "assets/sq-tenis-rosa-laranja.jpg", "assets/sq-tenis-branco-1386.jpg", "assets/sq-tenis-branco-verde.jpg"], B: ["assets/sq-bolsa-fosca-preta.jpg", "assets/sq-bolsa-folha-dourada.jpg", "assets/sq-bolsa-rosa.jpg"] };
     const todos = [
       ['Tênis em couro branco', 'Calçados masculinos', 1], ['Tênis plataforma', 'Calçados femininos', 0],
       ['Tênis runner', 'Calçados masculinos', 0], ['Tênis knit', 'Calçados femininos', 1],
@@ -119,7 +119,7 @@ class Component extends DCLogic {
       ['Bolsa de ombro matelassê', 'Bolsas femininas', 1], ['Bolsa transversal em couro', 'Bolsas masculinas', 0],
       ['Tote em couro', 'Bolsas femininas', 1], ['Pasta executiva', 'Bolsas masculinas', 1],
       ['Clutch estruturada', 'Bolsas femininas', 0], ['Pochete', 'Bolsas masculinas', 0]
-    ].map(([nome, cat, alto]) => ({ nome, cat, por: alto ? 'R$ 1.297,00' : 'R$ 1.197,00', isBag: cat.startsWith('Bolsas'), isShoe: !cat.startsWith('Bolsas') }));
+    ].map(([nome, cat, alto], i) => ({ nome, cat, img: cat.startsWith('Bolsas') ? IMG.B[i % 3] : IMG.S[i % 5], por: alto ? 'R$ 1.297,00' : 'R$ 1.197,00', isBag: cat.startsWith('Bolsas'), isShoe: !cat.startsWith('Bolsas') }));
     const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const q = this.state.q || '';
     const res = q.trim() ? todos.filter((p) => norm(p.nome + ' ' + p.cat).includes(norm(q.trim()))) : todos;
