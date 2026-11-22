@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>window.__SITE__ = true;</script>
 <script src="assets/dc-lite.js"></script>
 </head>
 <body>
@@ -34,12 +35,12 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
     <div style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
       <a href="Main.dc.html" aria-label="Brüder, página inicial" style="display: flex; align-items: center; height: 48px"><img src="assets/bruder-logo-preto.png" alt="Brüder" style="height: 38px; width: auto; display: block"></a>
       <nav class="navlinks" aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 8px 28px">
-        <a href="Categoria.dc.html">Feminino</a>
-        <a href="Categoria.dc.html">Masculino</a>
-        <a href="Categoria.dc.html">Calçados</a>
-        <a href="Categoria.dc.html">Bolsas</a>
-        <a href="Categoria.dc.html">Pronta entrega</a>
-        <a href="Categoria.dc.html" style="color: #7A1F2B">Ofertas</a>
+        <a href="Categoria.dc.html?g=fem">Feminino</a>
+        <a href="Categoria.dc.html?g=masc">Masculino</a>
+        <a href="Categoria.dc.html?s=calcados">Calçados</a>
+        <a href="Categoria.dc.html?s=bolsas">Bolsas</a>
+        <a href="Categoria.dc.html?d=pronta">Pronta entrega</a>
+        <a href="Categoria.dc.html?o=1" style="color: #7A1F2B">Ofertas</a>
       </nav>
       <div style="display: flex; align-items: center; gap: 4px">
         <a href="Busca.dc.html" aria-label="Buscar" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
@@ -68,10 +69,10 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
   <div style="max-width: 1280px; margin: 0 auto; padding: 48px 32px 96px; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
     <aside aria-label="Categorias" style="flex: 1 1 220px; max-width: 260px; display: flex; flex-direction: column; gap: 14px">
       <strong style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase">Categorias</strong>
-      <a href="Categoria.dc.html" style="font-size: 15px">Calçados femininos</a>
-      <a href="Categoria.dc.html" style="font-size: 15px">Calçados masculinos</a>
-      <a href="Categoria.dc.html" style="font-size: 15px">Bolsas femininas</a>
-      <a href="Categoria.dc.html" style="font-size: 15px">Bolsas masculinas</a>
+      <a href="Categoria.dc.html?g=fem&amp;s=calcados" style="font-size: 15px">Calçados femininos</a>
+      <a href="Categoria.dc.html?g=masc&amp;s=calcados" style="font-size: 15px">Calçados masculinos</a>
+      <a href="Categoria.dc.html?g=fem&amp;s=bolsas" style="font-size: 15px">Bolsas femininas</a>
+      <a href="Categoria.dc.html?g=masc&amp;s=bolsas" style="font-size: 15px">Bolsas masculinas</a>
     </aside>
     <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
       <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.01em; font-size: 28px">{{titulo}}</h1>

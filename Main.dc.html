@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>window.__SITE__ = true;</script>
 <script src="assets/dc-lite.js"></script>
 </head>
 <body>
@@ -38,12 +39,12 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
     <div style="max-width: 1280px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
       <a href="Main.dc.html" aria-label="Brüder, página inicial" style="display: flex; align-items: center; height: 48px"><img src="assets/bruder-logo-preto.png" alt="Brüder" style="height: 38px; width: auto; display: block"></a>
       <nav class="navlinks" aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 8px 28px">
-        <a href="Categoria.dc.html">Feminino</a>
-        <a href="Categoria.dc.html">Masculino</a>
-        <a href="Categoria.dc.html">Calçados</a>
-        <a href="Categoria.dc.html">Bolsas</a>
-        <a href="Categoria.dc.html">Pronta entrega</a>
-        <a href="Categoria.dc.html" style="color: #7A1F2B">Ofertas</a>
+        <a href="Categoria.dc.html?g=fem">Feminino</a>
+        <a href="Categoria.dc.html?g=masc">Masculino</a>
+        <a href="Categoria.dc.html?s=calcados">Calçados</a>
+        <a href="Categoria.dc.html?s=bolsas">Bolsas</a>
+        <a href="Categoria.dc.html?d=pronta">Pronta entrega</a>
+        <a href="Categoria.dc.html?o=1" style="color: #7A1F2B">Ofertas</a>
       </nav>
       <div style="display: flex; align-items: center; gap: 4px">
         <a href="Busca.dc.html" aria-label="Buscar" style="width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
@@ -56,7 +57,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 
   <!-- Hero dividido Feminino / Masculino -->
   <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0">
-    <a href="Categoria.dc.html" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 620px; padding: 56px; background: #E9E6E1; overflow: hidden">
+    <a href="Categoria.dc.html?g=fem" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 620px; padding: 56px; background: #E9E6E1; overflow: hidden">
       <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #8A8580; font-size: 13px; letter-spacing: .1em; text-transform: uppercase">[ Foto campanha feminina ]</div>
       <div style="position: relative; display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
         <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #3D3A36"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Feminino</span>
@@ -64,7 +65,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
         <span style="margin-top: 8px; display: inline-flex; align-items: center; height: 48px; padding: 0 28px; background: #111111; color: #FFFFFF; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Comprar feminino</span>
       </div>
     </a>
-    <a href="Categoria.dc.html" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 620px; padding: 56px; background: #2A2826; overflow: hidden">
+    <a href="Categoria.dc.html?g=masc" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 620px; padding: 56px; background: #2A2826; overflow: hidden">
       <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #9C978F; font-size: 13px; letter-spacing: .1em; text-transform: uppercase">[ Foto campanha masculina ]</div>
       <div style="position: relative; display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
         <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #D6D2CC"><img src="assets/bruder-icone-branco.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Masculino</span>
@@ -82,7 +83,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px">
       <sc-for list="{{categorias}}" as="c" hint-placeholder-count="4">
-        <a href="Categoria.dc.html" class="card" style="display: flex; flex-direction: column; gap: 14px">
+        <a href="{{c.href}}" class="card" style="display: flex; flex-direction: column; gap: 14px">
           <div class="card-img" style="aspect-ratio: 3 / 4; background: #F3F2F0; display: flex; align-items: center; justify-content: center; transition: background .2s">
             <sc-if value="{{c.isShoe}}" hint-placeholder-val="{{true}}">
               <svg aria-hidden="true" width="150" height="90" viewBox="0 0 160 90" fill="none" stroke="#9C978F" stroke-width="2" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path><path d="M60 36l6 8M70 32l6 8M80 30l5 9"></path></svg>
@@ -104,7 +105,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
   <section style="max-width: 1280px; margin: 0 auto; padding: 0 32px 72px">
     <div style="display: flex; flex-wrap: wrap; gap: 10px">
       <sc-for list="{{tipos}}" as="t" hint-placeholder-count="10">
-        <a href="Categoria.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border: 1px solid #D4D1CC; border-radius: 999px; font-size: 14px; font-weight: 500">{{t}}</a>
+        <a href="{{t.href}}" style="display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border: 1px solid #D4D1CC; border-radius: 999px; font-size: 14px; font-weight: 500">{{t.label}}</a>
       </sc-for>
     </div>
   </section>
@@ -117,7 +118,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
           <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #7A1F2B"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 14px; width: auto">Envio em até 24h</span>
           <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 40px; letter-spacing: -.02em">Pronta entrega</h2>
         </div>
-        <a href="Categoria.dc.html" style="font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px">Ver todos</a>
+        <a href="Categoria.dc.html?d=pronta" style="font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px">Ver todos</a>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px">
         <sc-for list="{{produtos}}" as="p" hint-placeholder-count="4">
@@ -152,8 +153,8 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
       <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -.02em">Mais de 500 modelos para ela e para ele.</h2>
       <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3D3A36">De ombro, tote, transversal e clutch. Peças importadas, com frete e taxas já incluídos no preço.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
-        <a href="Categoria.dc.html" style="display: inline-flex; align-items: center; height: 48px; padding: 0 28px; background: #111111; color: #FFFFFF; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Bolsas femininas</a>
-        <a href="Categoria.dc.html" style="display: inline-flex; align-items: center; height: 48px; padding: 0 28px; border: 1.5px solid #111111; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Bolsas masculinas</a>
+        <a href="Categoria.dc.html?g=fem&amp;s=bolsas" style="display: inline-flex; align-items: center; height: 48px; padding: 0 28px; background: #111111; color: #FFFFFF; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Bolsas femininas</a>
+        <a href="Categoria.dc.html?g=masc&amp;s=bolsas" style="display: inline-flex; align-items: center; height: 48px; padding: 0 28px; border: 1.5px solid #111111; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase">Bolsas masculinas</a>
       </div>
     </div>
   </section>
@@ -210,13 +211,13 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px">
         <strong style="color: #FFFFFF; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px">Feminino</strong>
-        <a href="Categoria.dc.html" style="color: #D6D2CC">Calçados femininos</a>
-        <a href="Categoria.dc.html" style="color: #D6D2CC">Bolsas femininas</a>
+        <a href="Categoria.dc.html?g=fem&amp;s=calcados" style="color: #D6D2CC">Calçados femininos</a>
+        <a href="Categoria.dc.html?g=fem&amp;s=bolsas" style="color: #D6D2CC">Bolsas femininas</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px">
         <strong style="color: #FFFFFF; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px">Masculino</strong>
-        <a href="Categoria.dc.html" style="color: #D6D2CC">Calçados masculinos</a>
-        <a href="Categoria.dc.html" style="color: #D6D2CC">Bolsas masculinas</a>
+        <a href="Categoria.dc.html?g=masc&amp;s=calcados" style="color: #D6D2CC">Calçados masculinos</a>
+        <a href="Categoria.dc.html?g=masc&amp;s=bolsas" style="color: #D6D2CC">Bolsas masculinas</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px">
         <strong style="color: #FFFFFF; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px">Atendimento</strong>
@@ -242,14 +243,16 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3600}}'>
 class Component extends DCLogic {
   renderVals() {
+    const site = typeof window !== 'undefined' && window.__SITE__;
+    const L = (q) => 'Categoria.dc.html' + (site ? '?' + q : '');
     return {
       categorias: [
-        { nome: 'Calçados femininos', isShoe: true, isBag: false },
-        { nome: 'Bolsas femininas', isShoe: false, isBag: true },
-        { nome: 'Calçados masculinos', isShoe: true, isBag: false },
-        { nome: 'Bolsas masculinas', isShoe: false, isBag: true }
+        { nome: 'Calçados femininos', href: L('g=fem&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas femininas', href: L('g=fem&s=bolsas'), isShoe: false, isBag: true },
+        { nome: 'Calçados masculinos', href: L('g=masc&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas masculinas', href: L('g=masc&s=bolsas'), isShoe: false, isBag: true }
       ],
-      tipos: ['Tênis', 'Mocassins', 'Sapatos', 'Sandálias', 'Sapatilhas', 'Bolsas de ombro', 'Tote', 'Transversal', 'Clutch', 'Pronta entrega'],
+      tipos: [['Tênis','s=calcados&t=Tênis'],['Mocassins','s=calcados&t=Mocassins'],['Sapatos sociais','s=calcados&t=Sapatos%20sociais'],['Sandálias','s=calcados&t=Sandálias'],['Sapatilhas','s=calcados&t=Sapatilhas'],['Bolsa de ombro','s=bolsas&t=Bolsa%20de%20ombro'],['Tote','s=bolsas&t=Tote'],['Transversal','s=bolsas&t=Transversal'],['Clutch','s=bolsas&t=Clutch'],['Pronta entrega','d=pronta']].map(([label, q]) => ({ label, href: L(q) })),
       produtos: [
         { cat: 'Calçados masculinos', nome: 'Tênis em couro branco', de: 'R$ 1.995,38', off: '-35%', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', parcela: 'R$ 259,40', tag: 'Tam. 44', isShoe: true, isBag: false },
         { cat: 'Bolsas femininas', nome: 'Bolsa de ombro matelassê', de: 'R$ 1.995,38', off: '-35%', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', parcela: 'R$ 259,40', tag: 'Pronta entrega', isShoe: false, isBag: true },

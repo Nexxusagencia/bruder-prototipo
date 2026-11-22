@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>window.__SITE__ = true;</script>
 <script src="assets/dc-lite.js"></script>
 </head>
 <body>
@@ -26,7 +27,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 
   <header style="display: flex; align-items: center; justify-content: space-between; padding: 8px 8px; border-bottom: 1px solid #E4E2DE">
     <button aria-label="Abrir menu" style="width: 44px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
-    <a href="#" aria-label="Brüder, página inicial" style="display: flex; align-items: center; height: 44px"><img src="assets/bruder-logo-preto.png" alt="Brüder" style="height: 28px; width: auto; display: block"></a>
+    <a href="Main.dc.html" aria-label="Brüder, página inicial" style="display: flex; align-items: center; height: 44px"><img src="assets/bruder-logo-preto.png" alt="Brüder" style="height: 28px; width: auto; display: block"></a>
     <div style="display: flex">
       <button aria-label="Buscar" style="width: 44px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></button>
       <button aria-label="Sacola, 0 itens" style="width: 44px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg></button>
@@ -34,10 +35,10 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
   </header>
 
   <nav aria-label="Atalhos" style="display: flex; gap: 8px; padding: 12px 16px; overflow-x: auto; white-space: nowrap">
-    <a href="#" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600">Feminino</a>
-    <a href="#" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid #D4D1CC; font-size: 13px; font-weight: 600">Masculino</a>
-    <a href="#" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid #D4D1CC; font-size: 13px; font-weight: 600">Calçados</a>
-    <a href="#" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid #D4D1CC; font-size: 13px; font-weight: 600">Bolsas</a>
+    <a href="Categoria.dc.html?g=fem" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600">Feminino</a>
+    <a href="Categoria.dc.html?g=masc" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid #D4D1CC; font-size: 13px; font-weight: 600">Masculino</a>
+    <a href="Categoria.dc.html?s=calcados" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid #D4D1CC; font-size: 13px; font-weight: 600">Calçados</a>
+    <a href="Categoria.dc.html?s=bolsas" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border: 1px solid #D4D1CC; font-size: 13px; font-weight: 600">Bolsas</a>
   </nav>
 
   <section style="position: relative; height: 480px; background: #E9E6E1; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 20px">
@@ -46,8 +47,8 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
       <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #3D3A36"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 13px; width: auto">Nova coleção</span>
       <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 44px; line-height: .95; letter-spacing: -.02em">Feito pra quem entende.</h1>
       <div style="display: flex; gap: 8px; margin-top: 6px">
-        <a href="#" style="display: inline-flex; align-items: center; height: 46px; padding: 0 18px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em">Feminino</a>
-        <a href="#" style="display: inline-flex; align-items: center; height: 46px; padding: 0 18px; background: #FFFFFF; color: #111111; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em">Masculino</a>
+        <a href="Categoria.dc.html?g=fem" style="display: inline-flex; align-items: center; height: 46px; padding: 0 18px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em">Feminino</a>
+        <a href="Categoria.dc.html?g=masc" style="display: inline-flex; align-items: center; height: 46px; padding: 0 18px; background: #FFFFFF; color: #111111; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em">Masculino</a>
       </div>
     </div>
   </section>
@@ -56,7 +57,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
     <h2 style="margin: 0 0 16px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em">Compre por categoria</h2>
     <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
       <sc-for list="{{categorias}}" as="c" hint-placeholder-count="4">
-        <a href="#" style="display: flex; flex-direction: column; gap: 8px">
+        <a href="{{c.href}}" style="display: flex; flex-direction: column; gap: 8px">
           <div style="aspect-ratio: 1 / 1; background: #F3F2F0; display: flex; align-items: center; justify-content: center">
             <sc-if value="{{c.isShoe}}" hint-placeholder-val="{{true}}">
               <svg aria-hidden="true" width="110" height="62" viewBox="0 0 160 90" fill="none" stroke="#9C978F" stroke-width="2.4" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path><path d="M12 72h138"></path></svg>
@@ -77,11 +78,11 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
         <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #7A1F2B"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 12px; width: auto">Envio em até 24h</span>
         <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -.02em">Pronta entrega</h2>
       </div>
-      <a href="#" style="font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px">Ver todos</a>
+      <a href="Categoria.dc.html?d=pronta" style="font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px">Ver todos</a>
     </div>
     <div style="display: flex; gap: 12px; overflow: hidden">
       <sc-for list="{{produtos}}" as="p" hint-placeholder-count="3">
-        <a href="#" style="flex: 0 0 168px; display: flex; flex-direction: column; gap: 8px">
+        <a href="Produto.dc.html" style="flex: 0 0 168px; display: flex; flex-direction: column; gap: 8px">
           <div style="aspect-ratio: 1 / 1; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
             <sc-if value="{{p.isShoe}}" hint-placeholder-val="{{true}}">
               <svg aria-hidden="true" width="110" height="62" viewBox="0 0 160 90" fill="none" stroke="#B5B0A8" stroke-width="2.4" stroke-linejoin="round"><path d="M12 72V58c2-9 10-13 20-15l18-4c8-6 13-13 17-20l12 3c4 15 16 21 30 25l30 7c9 2 13 8 13 15v3H16c-3 0-4-1-4-4z"></path></svg>
@@ -101,7 +102,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
   <section style="padding: 40px 16px; display: flex; flex-direction: column; gap: 16px">
     <div style="aspect-ratio: 4 / 3; background: #2A2826; display: flex; align-items: center; justify-content: center; color: #9C978F; font-size: 12px; letter-spacing: .1em; text-transform: uppercase">[ Foto editorial bolsas ]</div>
     <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 30px; line-height: 1.05; letter-spacing: -.02em">Mais de 500 modelos de bolsas.</h2>
-    <a href="#" style="align-self: flex-start; display: inline-flex; align-items: center; height: 48px; padding: 0 22px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em">Ver bolsas</a>
+    <a href="Categoria.dc.html?s=bolsas" style="align-self: flex-start; display: inline-flex; align-items: center; height: 48px; padding: 0 22px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em">Ver bolsas</a>
   </section>
 
   <section style="border-top: 1px solid #E4E2DE; padding: 28px 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px">
@@ -122,12 +123,14 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2200}}'>
 class Component extends DCLogic {
   renderVals() {
+    const site = typeof window !== 'undefined' && window.__SITE__;
+    const L = (q) => 'Categoria.dc.html' + (site ? '?' + q : '');
     return {
       categorias: [
-        { nome: 'Calçados femininos', isShoe: true, isBag: false },
-        { nome: 'Bolsas femininas', isShoe: false, isBag: true },
-        { nome: 'Calçados masculinos', isShoe: true, isBag: false },
-        { nome: 'Bolsas masculinas', isShoe: false, isBag: true }
+        { nome: 'Calçados femininos', href: L('g=fem&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas femininas', href: L('g=fem&s=bolsas'), isShoe: false, isBag: true },
+        { nome: 'Calçados masculinos', href: L('g=masc&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas masculinas', href: L('g=masc&s=bolsas'), isShoe: false, isBag: true }
       ],
       produtos: [
         { nome: 'Tênis em couro branco', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', isShoe: true, isBag: false },
