@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script>window.__SITE__ = true;</script>
+<script src="assets/catalogo.js"></script>
 <script src="assets/dc-lite.js"></script>
 </head>
 <body>
@@ -45,7 +46,7 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
       <div style="display: flex; align-items: center; gap: 4px">
         <a href="Busca.dc.html" aria-label="Buscar" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
         <a href="Conta.dc.html" aria-label="Minha conta" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
-        <a href="Sacola.dc.html" aria-label="Sacola, 2 itens" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><span style="position: absolute; top: 6px; right: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #7A1F2B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">2</span></a>
+        <a href="Sacola.dc.html" aria-label="Sacola, {{qtdTotal}} itens" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><sc-if value="{{temItens}}" hint-placeholder-val="{{true}}"><span style="position: absolute; top: 6px; right: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #7A1F2B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">{{qtdTotal}}</span></sc-if></a>
       </div>
     </div>
   </header>
@@ -65,12 +66,12 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
         </sc-if>
         <sc-for list="{{itens}}" as="it" hint-placeholder-count="2">
           <div style="display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid #E4E2DE">
-            <a href="Produto.dc.html" style="flex: 0 0 140px; height: 140px; background: #F3F2F0; display: flex; align-items: center; justify-content: center; overflow: hidden">
+            <a href="{{it.href}}" style="flex: 0 0 140px; height: 140px; background: #F3F2F0; display: flex; align-items: center; justify-content: center; overflow: hidden">
               <img src="{{it.img}}" alt="{{it.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
             </a>
             <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 6px; min-width: 0">
               <div style="display: flex; justify-content: space-between; gap: 16px">
-                <a href="Produto.dc.html" style="font-size: 17px; font-weight: 600">{{it.nome}}</a>
+                <a href="{{it.href}}" style="font-size: 17px; font-weight: 600">{{it.nome}}</a>
                 <strong style="font-size: 17px; white-space: nowrap">{{it.totalFmt}}</strong>
               </div>
               <span style="font-size: 14px; color: #5C5C5C">{{it.det}}</span>
@@ -124,24 +125,29 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { itens: [
-      { id: 1, nome: 'Tênis em couro branco', det: 'Calçados masculinos · Tam. 42', preco: 1297, qty: 1, img: 'assets/sq-tenis-branco-verde.jpg', isShoe: true, status: 'Pronta entrega · envio em 24h' },
-      { id: 2, nome: 'Bolsa transversal em couro', det: 'Bolsas masculinas · Preta', preco: 1197, qty: 1, img: 'assets/sq-bolsa-fosca-preta.jpg', isShoe: false, status: 'Pronta entrega · envio em 24h' }
-    ] };
+    const loaded = (typeof window !== 'undefined' && window.BRUDER_CART) ? window.BRUDER_CART.load() : [];
+    this.state = { itens: loaded };
   }
   renderVals() {
     const fmt = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const set = (id, fn) => this.setState({ itens: this.state.itens.map((x) => x.id === id ? fn(x) : x).filter((x) => x.qty > 0) });
+    const set = (key, fn) => {
+      const next = this.state.itens.map((x) => x.key === key ? fn(x) : x).filter((x) => x.qty > 0);
+      if (typeof window !== 'undefined' && window.BRUDER_CART) window.BRUDER_CART.save(next);
+      this.setState({ itens: next });
+    };
     const itens = this.state.itens.map((x) => ({
-      ...x, isBag: !x.isShoe, totalFmt: fmt(x.preco * x.qty),
-      mais: () => set(x.id, (y) => ({ ...y, qty: y.qty + 1 })),
-      menos: () => set(x.id, (y) => ({ ...y, qty: Math.max(1, y.qty - 1) })),
-      remover: () => set(x.id, (y) => ({ ...y, qty: 0 }))
+      ...x,
+      href: 'Produto.dc.html?id=' + encodeURIComponent(x.id || 'p001'),
+      isBag: !x.isShoe, totalFmt: fmt(x.preco * x.qty),
+      mais: () => set(x.key, (y) => ({ ...y, qty: y.qty + 1 })),
+      menos: () => set(x.key, (y) => ({ ...y, qty: Math.max(1, y.qty - 1) })),
+      remover: () => set(x.key, (y) => ({ ...y, qty: 0 }))
     }));
     const sub = this.state.itens.reduce((a, x) => a + x.preco * x.qty, 0);
+    const qtdTotal = this.state.itens.reduce((a, x) => a + x.qty, 0);
     return {
-      itens, vazia: itens.length === 0,
-      qtdTotal: this.state.itens.reduce((a, x) => a + x.qty, 0),
+      itens, vazia: itens.length === 0, temItens: qtdTotal > 0,
+      qtdTotal,
       subtotal: fmt(sub), pix: fmt(sub * 0.9), parcela: fmt(sub / 5)
     };
   }

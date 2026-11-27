@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script>window.__SITE__ = true;</script>
+<script src="assets/catalogo.js"></script>
 <script src="assets/dc-lite.js"></script>
 </head>
 <body>
@@ -84,7 +85,7 @@ a:hover .hero-slide,a:hover .hero-bar,section:hover>.hero-slide,section:hover .h
     </div>
     <div style="display: flex; gap: 12px; overflow: hidden">
       <sc-for list="{{produtos}}" as="p" hint-placeholder-count="3">
-        <a href="Produto.dc.html" style="flex: 0 0 168px; display: flex; flex-direction: column; gap: 8px">
+        <a href="{{p.href}}" style="flex: 0 0 168px; display: flex; flex-direction: column; gap: 8px">
           <div style="aspect-ratio: 1 / 1; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
             <img src="{{p.img}}" alt="{{p.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
           </div>
@@ -97,7 +98,7 @@ a:hover .hero-slide,a:hover .hero-bar,section:hover>.hero-slide,section:hover .h
   </section>
 
   <section style="padding: 40px 16px; display: flex; flex-direction: column; gap: 16px">
-    <img src="assets/sq-bolsa-folha-dourada.jpg" alt="Bolsa tote translúcida com emblema dourado" style="aspect-ratio: 4 / 3; width: 100%; object-fit: cover; display: block">
+    <img src="assets/bolsa-prada-(170).webp" alt="Bolsa Prada importada" style="aspect-ratio: 4 / 3; width: 100%; object-fit: cover; display: block; background: #F3F2F0">
     <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 30px; line-height: 1.05; letter-spacing: -.02em">Mais de 500 modelos de bolsas.</h2>
     <a href="Categoria.dc.html?s=bolsas" style="align-self: flex-start; display: inline-flex; align-items: center; height: 48px; padding: 0 22px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em">Ver bolsas</a>
   </section>
@@ -120,21 +121,27 @@ a:hover .hero-slide,a:hover .hero-bar,section:hover>.hero-slide,section:hover .h
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2200}}'>
 class Component extends DCLogic {
   renderVals() {
-    const IMG = { S: ["assets/sq-tenis-cinza-verde.jpg", "assets/sq-tenis-preto-amarelo.jpg", "assets/sq-tenis-rosa-laranja.jpg", "assets/sq-tenis-branco-1386.jpg", "assets/sq-tenis-branco-verde.jpg"], B: ["assets/sq-bolsa-fosca-preta.jpg", "assets/sq-bolsa-folha-dourada.jpg", "assets/sq-bolsa-rosa.jpg"] };
+    const cat = (typeof window !== 'undefined' && window.BRUDER_CATALOGO) ? window.BRUDER_CATALOGO : [];
+    const pick = (fn) => cat.find(fn) || cat[0] || { id: 'p001', img: '', nome: '', por: '', pix: '' };
     const site = typeof window !== 'undefined' && window.__SITE__;
     const L = (q) => 'Categoria.dc.html' + (site ? '?' + q : '');
+    const P = (id) => 'Produto.dc.html' + (site ? '?id=' + encodeURIComponent(id) : '');
+    const catFemShoe  = pick((x) => x.g === 'fem' && x.s === 'calcados' && x.tipo === 'Sapatilhas');
+    const catFemBag   = pick((x) => x.g === 'fem' && x.s === 'bolsas' && x.nome.indexOf('Chanel') >= 0);
+    const catMascShoe = pick((x) => x.g === 'masc' && x.s === 'calcados' && x.pronta);
+    const catMascBag  = pick((x) => x.g === 'masc' && x.s === 'bolsas');
+    const pronta = cat.filter((x) => x.pronta).slice(0, 3).map((p) => ({
+      href: P(p.id), nome: p.nome, img: p.img, por: p.por, pix: p.pix,
+      isShoe: p.s === 'calcados', isBag: p.s === 'bolsas'
+    }));
     return {
       categorias: [
-        { nome: 'Calçados femininos', img: IMG.S[2], href: L('g=fem&s=calcados'), isShoe: true, isBag: false },
-        { nome: 'Bolsas femininas', img: IMG.B[2], href: L('g=fem&s=bolsas'), isShoe: false, isBag: true },
-        { nome: 'Calçados masculinos', img: IMG.S[1], href: L('g=masc&s=calcados'), isShoe: true, isBag: false },
-        { nome: 'Bolsas masculinas', img: IMG.B[0], href: L('g=masc&s=bolsas'), isShoe: false, isBag: true }
+        { nome: 'Calçados femininos', img: catFemShoe.img, href: L('g=fem&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas femininas', img: catFemBag.img, href: L('g=fem&s=bolsas'), isShoe: false, isBag: true },
+        { nome: 'Calçados masculinos', img: catMascShoe.img, href: L('g=masc&s=calcados'), isShoe: true, isBag: false },
+        { nome: 'Bolsas masculinas', img: catMascBag.img, href: L('g=masc&s=bolsas'), isShoe: false, isBag: true }
       ],
-      produtos: [
-        { nome: 'Tênis em couro branco', img: IMG.S[4], por: 'R$ 1.297,00', pix: 'R$ 1.167,30', isShoe: true, isBag: false },
-        { nome: 'Bolsa de ombro matelassê', img: IMG.B[1], por: 'R$ 1.297,00', pix: 'R$ 1.167,30', isShoe: false, isBag: true },
-        { nome: 'Tênis plataforma', img: IMG.S[0], por: 'R$ 1.197,00', pix: 'R$ 1.077,30', isShoe: true, isBag: false }
-      ]
+      produtos: pronta
     };
   }
 }

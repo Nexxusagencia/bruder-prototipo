@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script>window.__SITE__ = true;</script>
+<script src="assets/catalogo.js"></script>
 <script src="assets/dc-lite.js"></script>
 </head>
 <body>
@@ -45,7 +46,7 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
       <div style="display: flex; align-items: center; gap: 4px">
         <a href="Busca.dc.html" aria-label="Buscar" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
         <a href="Conta.dc.html" aria-label="Minha conta" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
-        <a href="Sacola.dc.html" aria-label="Sacola, 2 itens" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><span style="position: absolute; top: 6px; right: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #7A1F2B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">2</span></a>
+        <a href="Sacola.dc.html" aria-label="Sacola, {{qtdTotal}} itens" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg><span style="position: absolute; top: 6px; right: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #7A1F2B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">{{qtdTotal}}</span></a>
       </div>
     </div>
   </header>
@@ -117,16 +118,13 @@ input,select,button{font-family:Inter,system-ui,sans-serif}
       </div>
       <aside aria-label="Resumo do pedido" style="flex: 1 1 340px; max-width: 420px; display: flex; flex-direction: column; gap: 18px; padding: 32px; background: #F7F6F4">
         <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.01em">Seu pedido</h2>
-          <div style="display: flex; gap: 14px; align-items: center">
-            <div style="flex: 0 0 72px; height: 72px; background: #FFFFFF; overflow: hidden"><img src="assets/sq-tenis-branco-verde.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-            <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Tênis em couro branco</span><span style="font-size: 12px; color: #5C5C5C">Tam. 42 · Pronta entrega</span></div>
-            <span style="font-size: 14px; font-weight: 600">R$ 1.297,00</span>
-          </div>
-          <div style="display: flex; gap: 14px; align-items: center">
-            <div style="flex: 0 0 72px; height: 72px; background: #FFFFFF; overflow: hidden"><img src="assets/sq-bolsa-fosca-preta.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-            <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Bolsa transversal em couro</span><span style="font-size: 12px; color: #5C5C5C">Preta · Pronta entrega</span></div>
-            <span style="font-size: 14px; font-weight: 600">R$ 1.197,00</span>
-          </div>
+          <sc-for list="{{itens}}" as="it" hint-placeholder-count="2">
+            <div style="display: flex; gap: 14px; align-items: center">
+              <div style="flex: 0 0 72px; height: 72px; background: #FFFFFF; overflow: hidden"><img src="{{it.img}}" alt="{{it.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
+              <div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 14px; font-weight: 600">{{it.nome}}</span><span style="font-size: 12px; color: #5C5C5C">{{it.det}} · Qtd. {{it.qty}}</span></div>
+              <span style="font-size: 14px; font-weight: 600; white-space: nowrap">{{it.totalFmt}}</span>
+            </div>
+          </sc-for>
         <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #D4D1CC; font-size: 15px">
           <div style="display: flex; justify-content: space-between"><span>Subtotal</span><span>{{total}}</span></div>
           <div style="display: flex; justify-content: space-between"><span>Frete e taxas</span><span style="color: #1A5C3B; font-weight: 600">Grátis</span></div>
@@ -151,12 +149,16 @@ class Component extends DCLogic {
   constructor(props) { super(props); this.state = { metodo: 'pix' }; }
   renderVals() {
     const fmt = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    const total = 1297 + 1197;
+    const raw = (typeof window !== 'undefined' && window.BRUDER_CART) ? window.BRUDER_CART.load() : [];
+    const itens = raw.map((x) => Object.assign({}, x, { totalFmt: fmt(x.preco * x.qty) }));
+    const total = raw.reduce((a, x) => a + x.preco * x.qty, 0);
+    const qtdTotal = raw.reduce((a, x) => a + x.qty, 0);
     const pix = this.state.metodo === 'pix';
     const base = 'display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 18px 20px; font-size: 15px; text-align: left; cursor: pointer; ';
     const on = base + 'border: 2px solid #111111; background: #FFFFFF; color: #111111';
     const off = base + 'border: 1.5px solid #D4D1CC; background: #FFFFFF; color: #3D3A36';
     return {
+      itens, qtdTotal,
       isPix: pix, isCartao: !pix,
       pixSel: pix ? 'true' : 'false', cartaoSel: pix ? 'false' : 'true',
       pixStyle: pix ? on : off, cartaoStyle: pix ? off : on,

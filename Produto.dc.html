@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script>window.__SITE__ = true;</script>
+<script src="assets/catalogo.js"></script>
 <script src="assets/dc-lite.js"></script>
 </head>
 <body>
@@ -48,7 +49,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
         <a href="Busca.dc.html" aria-label="Buscar" style="width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
         <a href="Conta.dc.html" aria-label="Minha conta" style="width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
         <a href="Sacola.dc.html" aria-label="{{sacolaLabel}}" style="position: relative; width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.8" stroke-linejoin="round"><path d="M5 8h14l-1 13H6L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
-          <sc-if value="{{noCarrinho}}" hint-placeholder-val="{{false}}"><span style="position: absolute; top: 6px; right: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #7A1F2B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">1</span></sc-if>
+          <sc-if value="{{temSacola}}" hint-placeholder-val="{{false}}"><span style="position: absolute; top: 6px; right: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #7A1F2B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">{{sacolaQtd}}</span></sc-if>
         </a>
       </div>
     </div>
@@ -56,7 +57,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 
   <div style="max-width: 1280px; margin: 0 auto; padding: 28px 32px 0">
     <nav aria-label="Você está em" style="font-size: 13px; color: #5C5C5C; display: flex; flex-wrap: wrap; gap: 8px">
-      <a href="Main.dc.html" style="color: #5C5C5C">Início</a><span aria-hidden="true">/</span><a href="Categoria.dc.html?g=masc" style="color: #5C5C5C">Masculino</a><span aria-hidden="true">/</span><a href="Categoria.dc.html?s=calcados" style="color: #5C5C5C">Calçados</a><span aria-hidden="true">/</span><span style="color: #111111">Tênis em couro branco</span>
+      <a href="Main.dc.html" style="color: #5C5C5C">Início</a><span aria-hidden="true">/</span><a href="{{bcGenHref}}" style="color: #5C5C5C">{{bcGenLabel}}</a><span aria-hidden="true">/</span><a href="{{bcSecHref}}" style="color: #5C5C5C">{{bcSecLabel}}</a><span aria-hidden="true">/</span><span style="color: #111111">{{nome}}</span>
     </nav>
   </div>
 
@@ -65,38 +66,46 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
     <div style="flex: 999 1 560px; min-width: 0; display: flex; gap: 16px">
       <div style="display: flex; flex-direction: column; gap: 12px; width: 84px; flex: 0 0 84px">
         <sc-for list="{{fotos}}" as="f" hint-placeholder-count="4">
-          <button type="button" onClick="{{f.pick}}" aria-label="{{f.label}}" style="{{f.style}}"><span style="display: block; width: 100%; height: 100%; overflow: hidden"><img src="assets/sq-tenis-branco-verde.jpg" alt="" style="{{f.imgStyle}}"></span></button>
+          <button type="button" onClick="{{f.pick}}" aria-label="{{f.label}}" style="{{f.style}}"><span style="display: block; width: 100%; height: 100%; overflow: hidden"><img src="{{f.src}}" alt="" style="{{f.imgStyle}}"></span></button>
         </sc-for>
       </div>
-      <div style="flex: 1 1 auto; min-width: 0; aspect-ratio: 1 / 1; background: #F3F2F0; overflow: hidden"><img src="assets/sq-tenis-branco-verde.jpg" alt="Tênis em couro branco, foto {{fotoAtual}} de 4" style="{{fotoStyle}}"></div>
+      <div style="flex: 1 1 auto; min-width: 0; aspect-ratio: 1 / 1; background: #F3F2F0; overflow: hidden"><img src="{{img}}" alt="{{nome}}, foto {{fotoAtual}} de 4" style="{{fotoStyle}}"></div>
     </div>
 
     <!-- Informações -->
     <div style="flex: 1 1 360px; max-width: 460px; display: flex; flex-direction: column; gap: 24px">
       <div style="display: flex; flex-direction: column; gap: 10px">
-        <span style="align-self: flex-start; background: #E8F1EC; color: #1A5C3B; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 6px 10px">Pronta entrega · envio em 24h</span>
-        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 40px; line-height: 1.05; letter-spacing: -.02em">Tênis em couro branco</h1>
-        <span style="font-size: 13px; color: #5C5C5C">Cód. [SKU-0000]</span>
+        <span style="{{badgeStyle}}">{{badgeText}}</span>
+        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: 36px; line-height: 1.08; letter-spacing: -.02em">{{nome}}</h1>
+        <span style="font-size: 13px; color: #5C5C5C">Cód. {{sku}} · {{cat}}</span>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 24px; border-bottom: 1px solid #E4E2DE">
-        <span style="display: flex; gap: 12px; align-items: baseline"><span style="font-size: 15px; color: #5C5C5C; text-decoration: line-through">R$ 1.995,38</span><span style="font-size: 32px; font-weight: 700; font-family: Archivo, sans-serif">R$ 1.297,00</span><span style="position: relative; align-self: center; display: inline-flex; align-items: center; height: 28px; padding: 0 12px 0 22px; background: #7A1F2B; color: #FFFFFF; font-size: 13px; font-weight: 700; clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%)"><span aria-hidden="true" style="position: absolute; left: 10px; top: 12px; width: 4px; height: 4px; border-radius: 50%; background: #FFFFFF"></span>-35%</span></span>
-        <span style="font-size: 15px"><strong style="color: #1A5C3B">R$ 1.167,30 no Pix</strong> (10% OFF)</span>
-        <span style="font-size: 14px; color: #3D3A36">ou 5x de R$ 259,40 sem juros</span>
+        <span style="display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap"><span style="font-size: 15px; color: #5C5C5C; text-decoration: line-through">{{de}}</span><span style="font-size: 32px; font-weight: 700; font-family: Archivo, sans-serif">{{por}}</span><span style="position: relative; align-self: center; display: inline-flex; align-items: center; height: 28px; padding: 0 12px 0 22px; background: #7A1F2B; color: #FFFFFF; font-size: 13px; font-weight: 700; clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%)"><span aria-hidden="true" style="position: absolute; left: 10px; top: 12px; width: 4px; height: 4px; border-radius: 50%; background: #FFFFFF"></span>{{off}}</span></span>
+        <span style="font-size: 15px"><strong style="color: #1A5C3B">{{pix}} no Pix</strong> (10% OFF)</span>
+        <span style="font-size: 14px; color: #3D3A36">ou 5x de {{parcela}} sem juros</span>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 12px">
-        <div style="display: flex; justify-content: space-between; align-items: baseline">
-          <strong style="font-size: 14px">Tamanho (BR): {{tamLabel}}</strong>
-          <a href="Ajuda.dc.html" style="font-size: 13px; text-decoration: underline; text-underline-offset: 3px">Guia de tamanhos</a>
+      <sc-if value="{{isShoe}}" hint-placeholder-val="{{true}}">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <strong style="font-size: 14px">Tamanho (BR): {{tamLabel}}</strong>
+            <a href="Ajuda.dc.html#tamanhos" style="font-size: 13px; text-decoration: underline; text-underline-offset: 3px">Guia de tamanhos</a>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{tamanhos}}" as="z" hint-placeholder-count="11">
+              <button type="button" onClick="{{z.pick}}" aria-pressed="{{z.on}}" disabled="{{z.off}}" style="{{z.style}}">{{z.n}}</button>
+            </sc-for>
+          </div>
+          <span style="font-size: 13px; color: #5C5C5C">{{tamNota}}</span>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
-          <sc-for list="{{tamanhos}}" as="z" hint-placeholder-count="11">
-            <button type="button" onClick="{{z.pick}}" aria-pressed="{{z.on}}" disabled="{{z.off}}" style="{{z.style}}">{{z.n}}</button>
-          </sc-for>
+      </sc-if>
+      <sc-if value="{{isBag}}" hint-placeholder-val="{{false}}">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border: 1px solid #E4E2DE; background: #FAFAF9">
+          <strong style="font-size: 14px">Tamanho</strong>
+          <span style="font-size: 14px; color: #3D3A36">Tamanho único · padrão importado</span>
         </div>
-        <span style="font-size: 13px; color: #5C5C5C">Tamanhos riscados: disponíveis sob encomenda (15 a 20 dias úteis).</span>
-      </div>
+      </sc-if>
 
       <div style="display: flex; flex-direction: column; gap: 10px">
         <button type="button" onClick="{{adicionar}}" style="{{ctaStyle}}">{{ctaLabel}}</button>
@@ -126,7 +135,7 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
       <h2 style="margin: 0 0 32px; display: flex; align-items: center; gap: 12px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -.02em"><img src="assets/bruder-icone-preto.png" alt="" aria-hidden="true" style="height: 26px; width: auto">Combine com</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px">
         <sc-for list="{{relacionados}}" as="p" hint-placeholder-count="4">
-          <a href="Produto.dc.html" class="card" style="display: flex; flex-direction: column; gap: 12px">
+          <a href="{{p.href}}" class="card" style="display: flex; flex-direction: column; gap: 12px">
             <div class="card-img" style="aspect-ratio: 1 / 1; background: #FFFFFF; display: flex; align-items: center; justify-content: center; transition: background .2s">
               <img src="{{p.img}}" alt="{{p.nome}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
             </div>
@@ -150,29 +159,45 @@ a{color:#111111;text-decoration:none}a:hover{color:#7A1F2B}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { foto: 0, tam: null, carrinho: false, aba: 'desc' };
+    let pid = '';
+    try { pid = new URLSearchParams(window.location.search).get('id') || ''; } catch (e) {}
+    const cat = (typeof window !== 'undefined' && window.BRUDER_CATALOGO) ? window.BRUDER_CATALOGO : [];
+    const byId = (typeof window !== 'undefined' && window.BRUDER_BY_ID) ? window.BRUDER_BY_ID : {};
+    const prod = byId[pid] || cat[0] || { id: 'p001', nome: 'Hermès — Tênis', g: 'masc', s: 'calcados', tipo: 'Tênis', cat: 'Calçados masculinos', preco: 1297, de: 'R$ 1.995,38', por: 'R$ 1.297,00', pix: 'R$ 1.167,30', parcela: 'R$ 259,40', off: '-35%', pronta: true, tamPronta: '40', img: 'assets/herms-tnis-(122).webp', sku: 'BRD-P001', desc: 'Produto importado com frete e taxas inclusos.' };
+    this.prod = prod;
+    const initTam = prod.s === 'bolsas' ? 'UN' : (prod.tamPronta || null);
+    this.state = { foto: 0, tam: initTam, carrinho: false, aba: 'desc', cartQtd: (typeof window !== 'undefined' && window.BRUDER_CART) ? window.BRUDER_CART.count() : 0 };
+    try { document.title = prod.nome + ' — Brüder'; } catch (e) {}
   }
   renderVals() {
-    const IMG = { S: ["assets/sq-tenis-cinza-verde.jpg", "assets/sq-tenis-preto-amarelo.jpg", "assets/sq-tenis-rosa-laranja.jpg", "assets/sq-tenis-branco-1386.jpg", "assets/sq-tenis-branco-verde.jpg"], B: ["assets/sq-bolsa-fosca-preta.jpg", "assets/sq-bolsa-folha-dourada.jpg", "assets/sq-bolsa-rosa.jpg"] };
+    const p = this.prod;
     const s = this.state;
-    const zoom = ['width: 100%; height: 100%; object-fit: cover; display: block', 'width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.6); transform-origin: 20% 60%', 'width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.8); transform-origin: 85% 45%', 'width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.5); transform-origin: 50% 85%'];
+    const isShoe = p.s === 'calcados';
+    const zoom = [
+      'width: 100%; height: 100%; object-fit: cover; display: block',
+      'width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.55); transform-origin: 20% 60%',
+      'width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.75); transform-origin: 82% 45%',
+      'width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.45); transform-origin: 50% 85%'
+    ];
     const fotos = [0, 1, 2, 3].map((i) => ({
+      src: p.img,
       label: 'Ver foto ' + (i + 1),
       style: 'aspect-ratio: 1 / 1; width: 84px; display: flex; align-items: center; justify-content: center; background: #F3F2F0; cursor: pointer; padding: 0; overflow: hidden; border: ' + (s.foto === i ? '1.5px solid #111111' : '1.5px solid transparent'),
-      imgStyle: zoom[i], pick: () => this.setState({ foto: i })
+      imgStyle: zoom[i],
+      pick: () => this.setState({ foto: i })
     }));
-    const esgotados = { '34': true, '35': true, '43': true };
+    const listTam = p.g === 'fem' ? ['34','35','36','37','38','39','40'] : ['38','39','40','41','42','43','44'];
     const base = 'height: 48px; font-family: Inter, sans-serif; font-size: 15px; cursor: pointer; ';
-    const tamanhos = ['34','35','36','37','38','39','40','41','42','43','44'].map((n) => {
-      const off = !!esgotados[n];
+    const tamanhos = listTam.map((n) => {
+      const onlyPronta = p.pronta && p.tamPronta && n !== p.tamPronta;
       const sel = s.tam === n;
       let style = base + 'border: 1.5px solid #D4D1CC; background: #FFFFFF; color: #111111';
       if (sel) style = base + 'border: 1.5px solid #111111; background: #111111; color: #FFFFFF';
-      if (off) style = base + 'border: 1.5px dashed #D4D1CC; background: #FAFAF9; color: #8A8580; text-decoration: line-through; cursor: not-allowed';
-      return { n, off, on: sel ? 'true' : 'false', style, pick: () => { if (!off) this.setState({ tam: n, carrinho: false }); } };
+      else if (onlyPronta) style = base + 'border: 1.5px dashed #D4D1CC; background: #FAFAF9; color: #6B6660';
+      return { n, off: false, on: sel ? 'true' : 'false', style, pick: () => this.setState({ tam: n, carrinho: false }) };
     });
     const textos = {
-      desc: 'Tênis em couro liso com solado de borracha e palmilha acolchoada. Produto importado. [Descrição completa do produto]',
+      desc: p.desc || (p.nome + ' importado com acabamento premium. Frete e taxas de importação por nossa conta.'),
       entrega: 'Pronta entrega: enviado em até 24h via SEDEX, frete e taxas de importação por nossa conta. Sob encomenda: 15 a 20 dias úteis.',
       troca: 'Troca em até 7 dias após o recebimento. Fale com a gente pelo WhatsApp para iniciar.'
     };
@@ -187,28 +212,53 @@ class Component extends DCLogic {
         toggle: () => this.setState({ aba: open ? null : a.id })
       });
     });
-    const temTam = !!s.tam;
+    const temTam = !isShoe || !!s.tam;
     const ctaBase = 'height: 56px; border: 0; font-family: Inter, sans-serif; font-size: 15px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; ';
     let ctaStyle = ctaBase + 'background: #111111; color: #FFFFFF';
     let ctaLabel = temTam ? 'Adicionar à sacola' : 'Selecione um tamanho';
     if (!temTam) ctaStyle = ctaBase + 'background: #5C5C5C; color: #FFFFFF';
     if (s.carrinho) { ctaStyle = ctaBase + 'background: #1A5C3B; color: #FFFFFF'; ctaLabel = 'Adicionado à sacola ✓'; }
+    const cat = (typeof window !== 'undefined' && window.BRUDER_CATALOGO) ? window.BRUDER_CATALOGO : [];
+    const relPool = cat.filter((x) => x.id !== p.id && x.g === p.g);
+    const relDiff = relPool.filter((x) => x.s !== p.s).slice(0, 2);
+    const relSame = relPool.filter((x) => x.s === p.s).slice(0, 2);
+    const relacionados = relSame.concat(relDiff).slice(0, 4).map((x) => ({
+      href: 'Produto.dc.html?id=' + encodeURIComponent(x.id),
+      nome: x.nome, img: x.img, por: x.por
+    }));
+    const badgeStyle = p.pronta
+      ? 'align-self: flex-start; background: #E8F1EC; color: #1A5C3B; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 6px 10px'
+      : 'align-self: flex-start; background: #F3F2F0; color: #3D3A36; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 6px 10px';
+    const badgeText = p.pronta ? 'Pronta entrega · envio em 24h' : 'Sob encomenda · 15 a 20 dias úteis';
+    const tamNota = p.pronta && p.tamPronta
+      ? ('Tamanho ' + p.tamPronta + 'BR disponível a pronta entrega (envio em 24h). Demais tamanhos: sob encomenda (15 a 20 dias úteis).')
+      : 'Todos os tamanhos disponíveis sob encomenda (15 a 20 dias úteis), com frete e taxas inclusos.';
     return {
-      fotos,
-      fotoAtual: s.foto + 1, fotoStyle: zoom[s.foto] + '; transition: transform .3s',
-      tamanhos,
-      tamLabel: s.tam || 'selecione',
-      abas,
-      ctaStyle, ctaLabel,
+      nome: p.nome, sku: p.sku, cat: p.cat, img: p.img,
+      de: p.de, por: p.por, pix: p.pix, parcela: p.parcela, off: p.off,
+      badgeStyle, badgeText,
+      bcGenLabel: p.g === 'fem' ? 'Feminino' : 'Masculino',
+      bcGenHref: 'Categoria.dc.html?g=' + p.g,
+      bcSecLabel: isShoe ? 'Calçados' : 'Bolsas',
+      bcSecHref: 'Categoria.dc.html?g=' + p.g + '&s=' + p.s,
+      isShoe, isBag: !isShoe,
+      fotos, fotoAtual: s.foto + 1, fotoStyle: zoom[s.foto] + '; transition: transform .3s',
+      tamanhos, tamLabel: s.tam || 'selecione', tamNota,
+      abas, ctaStyle, ctaLabel,
       noCarrinho: s.carrinho,
-      sacolaLabel: s.carrinho ? 'Sacola, 1 item' : 'Sacola, 0 itens',
-      adicionar: () => { if (temTam) this.setState({ carrinho: true }); },
-      relacionados: [
-        { nome: 'Mocassim em camurça', img: IMG.S[3], por: 'R$ 1.297,00', isShoe: true, isBag: false },
-        { nome: 'Bolsa transversal em couro', img: IMG.B[0], por: 'R$ 1.197,00', isShoe: false, isBag: true },
-        { nome: 'Tênis runner', img: IMG.S[0], por: 'R$ 1.197,00', isShoe: true, isBag: false },
-        { nome: 'Pasta executiva', img: IMG.B[1], por: 'R$ 1.297,00', isShoe: false, isBag: true }
-      ]
+      temSacola: s.cartQtd > 0,
+      sacolaQtd: s.cartQtd,
+      sacolaLabel: 'Sacola, ' + s.cartQtd + (s.cartQtd === 1 ? ' item' : ' itens'),
+      adicionar: () => {
+        if (!temTam) return;
+        if (typeof window !== 'undefined' && window.BRUDER_CART) {
+          window.BRUDER_CART.add(p, isShoe ? s.tam : 'UN');
+          this.setState({ carrinho: true, cartQtd: window.BRUDER_CART.count() });
+        } else {
+          this.setState({ carrinho: true, cartQtd: s.cartQtd + 1 });
+        }
+      },
+      relacionados
     };
   }
 }
