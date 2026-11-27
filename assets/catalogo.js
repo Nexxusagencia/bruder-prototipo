@@ -223,7 +223,7 @@
   },
   {
     "id": "p012",
-    "nome": "Prada — Tênis (Tam. 38BR)",
+    "nome": "Prada — Tênis Preto (Tam. 38BR)",
     "g": "fem",
     "s": "calcados",
     "tipo": "Tênis",
